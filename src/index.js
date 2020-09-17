@@ -1,3 +1,1 @@
-function fetchMovies() {}
-
-export default fetchMovies;
+export function fetchMovies() {}

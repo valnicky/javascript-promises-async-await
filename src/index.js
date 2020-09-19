@@ -1,20 +1,9 @@
 import { fetchWithTimeout } from "./services";
-import { fetchMovies, fetchBooks } from "./services";
+import { fetchMovies} from "./services";
+import {fetchBooks} from './services';
 
 const movies = require("./data/movies.json");
 
-/*export function fetchMovies() {
-  const resolveFunction = () => movies;
-
-  return fetchWithTimeout(1000).then(resolveFunction);
-}*/
-
-/*let moviePromise = fetchMovies();
-
-moviePromise.then((results) => {
-  console.log(results);
-});
-*/
 
  getBooksAndMovies() {
   return Promise.all([fetchBooks(), fetchMovies()])

@@ -12,6 +12,8 @@ const movies = require("./data/movies.json");
     .catch((error) => console.log("Error fetching books and movies", error));
 }
 
+const getBooksAndMoviesPromise = getBooksAndMovies();
+
  getBooksOrMovies() {
  return Promise.race([fetchBooks(), fetchMovies()]).then(results => results).catch(error => console.log("Error waiting for the promise race"));
  }

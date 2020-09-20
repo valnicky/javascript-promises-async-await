@@ -14,7 +14,7 @@ const movies = require("./data/movies.json");
 
 const getBooksAndMoviesPromise = getBooksAndMovies();
 
-getBooksAndMoviesPromise.then((results)=>{console.log('getBooksAndMoviesPromise', results)});
+getBooksAndMoviesPromise.then((results)=>{console.log('getBooksAndMoviesPromise', results);});
 
  getBooksOrMovies() {
  return Promise.race([fetchBooks(), fetchMovies()]).then(results => results).catch(error => console.log("Error waiting for the promise race", error));
@@ -22,7 +22,7 @@ getBooksAndMoviesPromise.then((results)=>{console.log('getBooksAndMoviesPromise'
  
  const getBooksOrMoviesPromise = getBooksOrMovies();
  
- getBooksOrMoviesPromise.then(results, console.log('getBooksOrMoviesPromise', results));
+ getBooksOrMoviesPromise.then(results => {console.log('getBooksOrMoviesPromise', results); });
  
  
  

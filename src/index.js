@@ -1,7 +1,9 @@
 import {
     fetchWithTimeout,
     fetchMovies,
-    fetchBooks
+    fetchBooks,
+    asyncFetchBooks,
+    asyncFetchMovies
 } from "./services";
 const movies = require("./data/movies.json");
 
@@ -29,4 +31,38 @@ function getBooksOrMovies() {
 const getBooksOrMoviesPromise = getBooksOrMovies();
 getBooksOrMoviesPromise.then(results => {
     console.log('getBooksOrMoviesPromise', results);
+});
+
+async function getBooksAndMoviesAsync() {
+    try {
+        const [books, movies] = await Promise.All([asyncFetchBooks(), asyncFetchMovies()]);
+        return {
+            books,
+            movies
+        }
+    } catch (error) {
+        console.log("Error fetching books and movies", error);
+    }
+}
+
+async function getBooksOrMoviesAsync() {
+    try {
+        const values = await Promise.race([asyncFetchBooks(), asyncFetchMovies()]);
+        return values;
+    } catch (error) {
+        console.log("Error waiting for the promise race", error);
+    }
+}
+
+getBooksOrMoviesAsync().then(results => {
+    console.log("movies and books", {
+        movies: results.movies,
+        books: results.books
+    });
+});
+
+getBooksOrMoviesAsync().then(results => {
+    console.log("movies OR books", {
+        results
+    });
 });

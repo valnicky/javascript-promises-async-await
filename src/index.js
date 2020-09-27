@@ -35,7 +35,7 @@ getBooksOrMoviesPromise.then(results => {
 
 async function getBooksAndMoviesAsync() {
     try {
-        const [books, movies] = await Promise.All([asyncFetchBooks(), asyncFetchMovies()]);
+        const [books, movies] = await Promise.all([asyncFetchBooks(), asyncFetchMovies()]);
         return {
             books,
             movies

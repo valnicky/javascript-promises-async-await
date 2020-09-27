@@ -54,16 +54,18 @@ async function getBooksOrMoviesAsync() {
     }
 }
 
-getBooksOrMoviesAsync().then(
+getBooksAndMoviesAsync().then(
     results => {
         console.log("movies AND books", {
             movies: results.movies,
             books: results.books
         });
-    });
+    }).catch(error => {
+    console.error("Error in getBooksAndMoviesAsync execution", error)
+});
 
 getBooksOrMoviesAsync().then(results => {
     console.log("movies OR books", {
         results
     });
-});
+}).catch(error => console.error("Error in getBooksOrMoviesAsync execution", error));
